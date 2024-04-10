@@ -1,0 +1,85 @@
+/* MessageList.css */
+.message-list {
+	scroll-behavior: smooth;
+	overflow-y: auto;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(200px, 1fr));
+	grid-auto-rows: max-content;
+	grid-gap: 1rem;
+	flex: 1 1 0;
+	aspect-ratio: 1 / 1;
+	outline: none;
+	min-height: 300px;
+	border-radius: 10px;
+	border: 1px solid #f1a7a7;
+	padding: 10px;
+	margin: 10px;
+
+	/* custom scrollbar */
+	&::-webkit-scrollbar {
+		width: 20px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: transparent;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: #68103c;
+		border-radius: 20px;
+		border: 6px solid transparent;
+		background-clip: content-box;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: #a8bbbf;
+	}
+}
+
+.message {
+	grid-column: 1;
+	background-color: transparent;
+	color: rgba(153, 226, 255, 0.9803921569);
+	font-size: 18px;
+	justify-self: start;
+	height: fit-content;
+	max-width: 450px;
+	word-wrap: break-word;
+
+	span {
+		position: relative;
+		text-align: left;
+		display: block;
+		padding: 10px;
+		max-width: 400px;
+		background-color: #6c6ca5;
+		border-radius: 5%;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: -3px;
+			transform: rotate3d(7, 2, 0, 150deg);
+			left: -5px;
+			width: 15px;
+			height: 15px;
+			background-color: #6c6ca5;
+		}
+	}
+}
+
+div.my-message {
+	grid-column: 2;
+	justify-self: end;
+
+	span {
+		color: #f9f9fc;
+		background-color: #714f81;
+		&::before {
+			left: unset;
+			right: -5px;
+			transform: rotate3d(7, 2, 0, 150deg);
+			background-color: #714f81;
+		}
+	}
+}

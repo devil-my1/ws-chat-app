@@ -1,0 +1,9 @@
+version = 0.1
+[default.deploy.parameters]
+stack_name = "ws-chat-app-auth"
+resolve_s3 = true
+s3_prefix = "ws-chat-app-auth"
+region = "ap-northeast-1"
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "Env=\"dev\" S3BucketName=\"ws-chat-bucket\" CognitoUserPoolName=\"ws-chat-app-auth-pool\" CognitoWebClientName=\"ws-chat-app-client\""
+image_repositories = []

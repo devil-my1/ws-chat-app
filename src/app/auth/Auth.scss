@@ -1,0 +1,123 @@
+.auth_main_container {
+    @apply flex flex-col shadow border-2 p-8 rounded-xl;
+
+    div[data-amplify-router] {
+        background-color: transparent;
+        border: 0;
+
+        div[role="tablist"] {
+            button {
+                color: rgba(124, 127, 128, 0.507);
+
+                &[aria-selected="true"] {
+                    color: #caa6ecef;
+                    border-color: #caa6ecef;
+                }
+            }
+        }
+
+        div.amplify-field-group__outer-end {
+            position: relative;
+        }
+
+        label.amplify-label {
+            color: whitesmoke;
+        }
+
+        div.amplify-field-group__field-wrapper,
+        div.mb-4,
+        div.mb-6 {
+            position: relative;
+
+            &::before {
+                content: "";
+                @apply rounded-s-full;
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 0%;
+                background-color: transparent;
+                transition: width 1s ease;
+            }
+
+            &:hover::before,
+            &:focus-within::before {
+                height: 1px;
+                width: 100%;
+                background-color: #caa6ecef;
+            }
+        }
+
+        input {
+            color: whitesmoke;
+            @apply border-0 border-none focus:outline-0 w-full placeholder:text-yellow-50/30;
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        button[aria-label="Show password"] {
+            @apply border-0 border-none focus:outline-0 w-full bg-[#0000] hover:bg-[#0000] transition-colors;
+            position: absolute;
+            top: 0;
+            left: -35px;
+            color: #caa6ecef;
+
+            &:focus {
+                @apply border-0 border-none focus:outline-0 w-full bg-[#0000] hover:bg-[#0000] transition-colors;
+                box-shadow: none;
+            }
+        }
+
+        button.amplify-button--primary,
+        button.federated-sign-in-button {
+            background: transparent;
+            border: 1px solid #caa6ecef;
+            margin-top: 1rem;
+
+            span {
+                color: whitesmoke;
+            }
+
+            &:hover,
+            &:focus {
+                color: #caa6ecef;
+                box-shadow: 0px 0px 15px 5px rgba(106, 167, 207, 0.3);
+                transition:
+                    box-shadow 0.5s linear,
+                    color 0.5s ease-in;
+            }
+        }
+
+        button.amplify-button--link {
+            color: #7ae2f5;
+
+            &:hover,
+            &:focus {
+                outline: none;
+                background: transparent;
+                border: 1px solid #7ae2f5;
+            }
+        }
+
+        h3.amplify-heading--3 {
+            color: whitesmoke;
+        }
+
+        hr.amplify-divider {
+            border-color: #caa6ecef;
+
+            &::after {
+                border-radius: 50%;
+                text-align: center;
+                color: #ffffff;
+                background-color: #52049d;
+            }
+        }
+        div.amplify-alert--error {
+            color: hsl(0deg 1.36% 77.65%);
+            background-color: hsl(0deg 0% 37.01% / 40%);
+        }
+    }
+}
