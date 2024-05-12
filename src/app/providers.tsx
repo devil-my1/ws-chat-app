@@ -5,8 +5,6 @@ import { Amplify } from "aws-amplify"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { PropsWithChildren, useState } from "react"
 import { awsConfig } from "@/config/aws-config"
-import { cognitoUserPoolsTokenProvider } from "aws-amplify/auth/cognito"
-import { CookieStorage } from "aws-amplify/utils"
 
 Amplify.configure({
 	Auth: {
@@ -27,7 +25,6 @@ export function Providers({ children }: PropsWithChildren) {
 			}
 		})
 	)
-	cognitoUserPoolsTokenProvider.setKeyValueStorage(new CookieStorage())
 
 	return (
 		<Authenticator.Provider>

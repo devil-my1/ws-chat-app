@@ -1,6 +1,5 @@
 import { DASHBOARD_URL } from "./config/pages-url.config"
 import { NextRequest, NextResponse } from "next/server"
-import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth"
 import { Amplify } from "aws-amplify"
 import { awsConfig } from "./config/aws-config"
 
@@ -15,22 +14,24 @@ Amplify.configure({
 
 export async function middleware(req: NextRequest, resp: NextResponse) {
 	const { url, cookies } = req
-	const accessToken = cookies
+
+	const is_logined = cookies
 		.getAll()
-		.find(cookie => cookie.name.endsWith("accessToken"))?.value
+		.find(cookie => cookie.name.endsWith("logined"))?.value
+	console.log(is_logined)
 
 	const isDashboardPage = url.includes("/i")
 	const isAuthPage = url.includes("/auth")
 
-	if (isAuthPage && accessToken)
+	if (isAuthPage && is_logined)
 		return NextResponse.redirect(new URL(DASHBOARD_URL.CHAT, url))
 
-	if (isDashboardPage && !accessToken)
+	if (isDashboardPage && !is_logined)
 		return NextResponse.redirect(new URL(DASHBOARD_URL.AUTH, url))
 
 	if (isAuthPage) return NextResponse.next()
 
-	if (!accessToken)
+	if (!is_logined)
 		return NextResponse.redirect(new URL(DASHBOARD_URL.AUTH, req.url))
 
 	return

@@ -22,6 +22,13 @@ Amplify.configure({
 	}
 })
 
+const setCookie = (name: string, value: string, days: number) => {
+	const date = new Date()
+	date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000)
+	const expires = "expires=" + date.toUTCString()
+	document.cookie = name + "=" + value + ";" + expires + ";path=/"
+}
+
 export function Auth() {
 	const { push } = useRouter()
 	const { skipVerification } = useAuthenticator()
@@ -47,6 +54,7 @@ export function Auth() {
 						const { nextStep } = await signInOutput
 						skipVerification()
 						nextStep.signInStep = "DONE"
+						setCookie("logined", "True", 7)
 						toast.success("Successfully login!")
 						push(DASHBOARD_URL.CHAT)
 						return signInOutput
